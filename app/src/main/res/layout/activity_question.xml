@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_question"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="#ffff"
+    tools:context="com.saha.sahamvp.QuestionActivity">
+
+    <Button
+        android:text="الخروج"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="62dp"
+        android:id="@+id/bLogout"
+        android:background="#00bfff"
+        android:textColor="#ffff"
+        android:textSize="30sp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="أدخل سؤالك:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="97dp"
+        android:textColor="#000"
+        android:textSize="36sp"
+        android:id="@+id/tvQuestionLabel" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:textColorHint="#8b8378"
+        android:id="@+id/etDescription"
+        android:hint="أكتب هنا..."
+        android:layout_marginTop="39dp"
+        android:textSize="24sp"
+        android:layout_below="@+id/tvQuestionLabel"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="24sp"
+        android:layout_marginTop="36dp"
+        android:id="@+id/tvSuccess" />
+
+    <Button
+        android:text="قدم"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/bSubmit"
+        android:background="#00bfff"
+        android:textColor="#ffff"
+        android:textSize="30sp"
+        android:layout_above="@+id/bLogout"
+        android:layout_alignLeft="@+id/bLogout"
+        android:layout_alignStart="@+id/bLogout"
+        android:layout_marginBottom="13dp" />
+
+</RelativeLayout>

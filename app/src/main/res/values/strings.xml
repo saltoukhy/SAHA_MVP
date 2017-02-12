@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">SAHA MVP</string>
+    <string name="accept">Accept</string>
+<string name="eula_string">COPYRIGHTS:
+
+\nCopyright 2017 SAHA. All Rights Reserved.
+
+\n\nوتلتزم صحة بقوة لحماية خصوصية المستعملين لها ومكرسة لضمان عدم تبادل المعلومات الصحية الشخصية. نحن لا تتبع لكم.
+.</string>
+</resources>
