@@ -1,7 +1,9 @@
 package com.saha.sahamvp;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
@@ -19,8 +21,27 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.InetAddress;
+
 
 public class LoginActivity extends Activity {
+
+    private boolean isNetworkConnected() {
+        ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        return cm.getActiveNetworkInfo() != null;
+    };
+
+    public boolean isInternetAvailable() {
+        try {
+            InetAddress ipAddr = InetAddress.getByName("https://untimbered-restrain.000webhostapp.com/login.php");
+            return !ipAddr.equals("");
+
+        } catch (Exception e) {
+            return false;
+        }
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,13 +55,24 @@ public class LoginActivity extends Activity {
         final Button bLogin = (Button) findViewById(R.id.bLogin);
         final TextView registerLink = (TextView) findViewById(R.id.tvLinkToRegister);
 
+
         registerLink.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
-                Intent registerIntent = new Intent(LoginActivity.this, RegisterActivity.class);
-                LoginActivity.this.startActivity(registerIntent);
+                if (isInternetAvailable())
+                {
+                    Intent registerIntent = new Intent(LoginActivity.this, RegisterActivity.class);
+                    LoginActivity.this.startActivity(registerIntent);
+                }
+                else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                    builder.setMessage("You are not connected to the Internet.")
+                            .setNegativeButton("أنت غير متصل بالإنترنت", null)
+                            .create()
+                            .show();
+                }
             }
         });
 
@@ -50,6 +82,7 @@ public class LoginActivity extends Activity {
             {
                 final String email = etEmail.getText().toString();
                 final String password = etPassword.getText().toString();
+
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
                     @Override
@@ -80,9 +113,21 @@ public class LoginActivity extends Activity {
                         }
                     }
                 };
-                LoginRequest loginRequest = new LoginRequest(email, password, responseListener);
-                RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
-                queue.add(loginRequest);
+
+                if (isInternetAvailable())
+                {
+                    LoginRequest loginRequest = new LoginRequest(email, password, responseListener);
+                    RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
+                    queue.add(loginRequest);
+                }
+                else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
+                    builder.setMessage("You are not connected to the Internet.")
+                            .setNegativeButton("أنت غير متصل بالإنترنت", null)
+                            .create()
+                            .show();
+                }
+
             }
         });
     }
