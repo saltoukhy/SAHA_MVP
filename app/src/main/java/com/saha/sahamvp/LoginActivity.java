@@ -34,7 +34,7 @@ public class LoginActivity extends Activity {
 
     public boolean isInternetAvailable() {
         try {
-            InetAddress ipAddr = InetAddress.getByName("https://untimbered-restrain.000webhostapp.com/login.php");
+            InetAddress ipAddr = InetAddress.getByName("google.com");
             return !ipAddr.equals("");
 
         } catch (Exception e) {
@@ -114,19 +114,10 @@ public class LoginActivity extends Activity {
                     }
                 };
 
-                if (isInternetAvailable())
-                {
-                    LoginRequest loginRequest = new LoginRequest(email, password, responseListener);
-                    RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
-                    queue.add(loginRequest);
-                }
-                else {
-                    AlertDialog.Builder builder = new AlertDialog.Builder(LoginActivity.this);
-                    builder.setMessage("You are not connected to the Internet.")
-                            .setNegativeButton("أنت غير متصل بالإنترنت", null)
-                            .create()
-                            .show();
-                }
+                LoginRequest loginRequest = new LoginRequest(email, password, responseListener);
+                RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
+                queue.add(loginRequest);
+                
 
             }
         });
